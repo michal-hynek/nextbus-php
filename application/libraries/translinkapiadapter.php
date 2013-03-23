@@ -44,11 +44,11 @@ class TranslinkAPIAdapter {
 	}
 
 	//////////////////////// API CALLS /////////////////////////
-	public function getNextBuses($stopId) {
+	public function getArrivals($stopId) {
 		$response = $this->restClient->execute("GET", self::API_URL . "/stops/" . $stopId . '/estimates',
 												array('ApiKey' => $this->APIKey));	
 
-		return $this->parser->getNextBuses($response);
+		return $this->parser->parseArrivals($response);
 	}
 
 

@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<NextBuses xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+<NextBus>
+    <RouteNo>009</RouteNo>
+    <RouteName>BDRY/COMM-BWY/GRAN/ALMA/UBC  </RouteName>
+    <Direction>EAST</Direction>
+    <RouteMap>
+        <Href>http://nb.translink.ca/geodata/009.kmz</Href>
+    </RouteMap>
+    <Schedules>
+        <Schedule>
+            <Pattern>EB31</Pattern>
+            <Destination>COMM'L-BDWAY STN</Destination>
+            <ExpectedLeaveTime>8:17pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>2</ExpectedCountdown>
+            <ScheduleStatus>
+            </ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:07:20 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB1BDY</Pattern>
+            <Destination>BOUNDARY</Destination>
+            <ExpectedLeaveTime>8:29pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>14</ExpectedCountdown>
+            <ScheduleStatus>-</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:17:36 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB31</Pattern>
+            <Destination>COMM'L-BDWAY STN</Destination>
+            <ExpectedLeaveTime>8:37pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>22</ExpectedCountdown>
+            <ScheduleStatus>*</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:28:03 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB1BDY</Pattern>
+            <Destination>BOUNDARY</Destination>
+            <ExpectedLeaveTime>8:47pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>32</ExpectedCountdown>
+            <ScheduleStatus>*</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:38:07 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB31</Pattern>
+            <Destination>COMM'L-BDWAY STN</Destination>
+            <ExpectedLeaveTime>8:57pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>42</ExpectedCountdown>
+            <ScheduleStatus>
+            </ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:48:24 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB1BDY</Pattern>
+            <Destination>BOUNDARY</Destination>
+            <ExpectedLeaveTime>9:07pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>52</ExpectedCountdown>
+            <ScheduleStatus>
+            </ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:59:21 pm</LastUpdate>
+        </Schedule>
+    </Schedules>
+</NextBus>
+<NextBus>
+    <RouteNo>014</RouteNo>
+    <RouteName>HASTINGS/UBC</RouteName>
+    <Direction>EAST</Direction>
+    <RouteMap>
+        <Href>http://nb.translink.ca/geodata/014.kmz</Href>
+    </RouteMap>
+    <Schedules>
+        <Schedule>
+            <Pattern>EB2</Pattern>
+            <Destination>DOWNTOWN</Destination>
+            <ExpectedLeaveTime>8:16pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>1</ExpectedCountdown>
+            <ScheduleStatus>-</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>06:50:33 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EBUBO</Pattern>
+            <Destination>TO GRANVILLE</Destination>
+            <ExpectedLeaveTime>8:16pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>1</ExpectedCountdown>
+            <ScheduleStatus>-</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>08:15:03 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB2</Pattern>
+            <Destination>DOWNTOWN</Destination>
+            <ExpectedLeaveTime>8:27pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>12</ExpectedCountdown>
+            <ScheduleStatus>-</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:05:29 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB2</Pattern>
+            <Destination>DOWNTOWN</Destination>
+            <ExpectedLeaveTime>8:41pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>26</ExpectedCountdown>
+            <ScheduleStatus>*</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:20:27 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB2F</Pattern>
+            <Destination>DOWNTOWN</Destination>
+            <ExpectedLeaveTime>8:56pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>41</ExpectedCountdown>
+            <ScheduleStatus>*</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:37:05 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB2F</Pattern>
+            <Destination>DOWNTOWN</Destination>
+            <ExpectedLeaveTime>9:11pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>56</ExpectedCountdown>
+            <ScheduleStatus>
+            </ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:52:30 pm</LastUpdate>
+        </Schedule>
+    </Schedules>
+</NextBus>
+<NextBus>
+    <RouteNo>016</RouteNo>
+    <RouteName>29TH AVENUE STN/ARBUTUS        </RouteName>
+    <Direction>EAST</Direction>
+    <RouteMap>
+        <Href>http://nb.translink.ca/geodata/016.kmz</Href>
+    </RouteMap>
+    <Schedules>
+        <Schedule>
+            <Pattern>EB1</Pattern>
+            <Destination>29TH AVE STN</Destination>
+            <ExpectedLeaveTime>8:31pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>16</ExpectedCountdown>
+            <ScheduleStatus>-</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:08:10 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB1</Pattern>
+            <Destination>29TH AVE STN</Destination>
+            <ExpectedLeaveTime>8:41pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>26</ExpectedCountdown>
+            <ScheduleStatus>*</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:23:04 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB1F</Pattern>
+            <Destination>29TH AVE STN</Destination>
+            <ExpectedLeaveTime>8:59pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>44</ExpectedCountdown>
+            <ScheduleStatus>-</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:38:12 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB1F</Pattern>
+            <Destination>29TH AVE STN</Destination>
+            <ExpectedLeaveTime>9:14pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>59</ExpectedCountdown>
+            <ScheduleStatus>
+            </ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:56:12 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB1F</Pattern>
+            <Destination>29TH AVE STN</Destination>
+            <ExpectedLeaveTime>9:36pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>81</ExpectedCountdown>
+            <ScheduleStatus>*</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:13:17 pm</LastUpdate>
+        </Schedule>
+        <Schedule>
+            <Pattern>EB1F</Pattern>
+            <Destination>29TH AVE STN</Destination>
+            <ExpectedLeaveTime>9:55pm 2013-03-15</ExpectedLeaveTime>
+            <ExpectedCountdown>100</ExpectedCountdown>
+            <ScheduleStatus>*</ScheduleStatus>
+            <CancelledTrip>false</CancelledTrip>
+            <CancelledStop>false</CancelledStop>
+            <AddedTrip>false</AddedTrip>
+            <AddedStop>false</AddedStop>
+            <LastUpdate>07:13:17 pm</LastUpdate>
+        </Schedule>
+    </Schedules>
+</NextBus>
+</NextBuses>

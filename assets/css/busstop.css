@@ -1,0 +1,22 @@
+.refresh, .delete {
+	margin-left: 10px;
+	float: right;
+}
+
+.add-stop .delete-stop {
+	margin-left: 10px;
+}
+
+.refresh {
+	margin-right: 10px;
+}
+
+.nextbus-pod {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.busstop-table th.rightCell,
+.busstop-table td.rightCell {
+  text-align: right;
+}

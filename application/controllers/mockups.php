@@ -19,6 +19,16 @@ class Mockups extends CI_controller {
 		$this->load->view('mockups_add_stop');
 	}
 
+	public function get_arrivals() {
+		$arrivals = $this->translinkapiadapter->getArrivals(50325);
+		$this->load->helper('sort');
+		$arrivals = sortArrivals($arrivals);
+
+		foreach ($arrivals as $arrival) {
+			echo $arrival->getBusNumber() . " " . $arrival->getDestination() . " " . $arrival->getMinutesTillArrival() . "<br/>";	
+		}
+	}
+
 	private function getConfig() {
 		$this->load->library('restapiclient');
 		$this->load->library('translinkapiparser');

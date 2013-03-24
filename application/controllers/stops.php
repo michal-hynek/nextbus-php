@@ -8,11 +8,13 @@ class Stops extends Restricted {
                 $this->load->view('add_stop');
         }
 
-        public function find() {
+        public function find($searchInput="") {
                 $stops = array();
                 $this->load->model('stop_model');
 
-                $searchInput = $this->input->post('search_input');
+                if (empty($searchInput)) {
+                        $searchInput = $this->input->post('search_input');
+                }
 
                 $stops = $this->stop_model->find($searchInput);
 
@@ -24,5 +26,20 @@ class Stops extends Restricted {
                 }
 
                 $this->load->view('add_stop', $data);
+        }
+
+        public function find_autocomplete() {
+                $stops = array();
+                $this->load->model('stop_model');
+
+                $searchInput = $this->input->post('search_input');
+                $stops = $this->stop_model->find($searchInput);
+
+                $response = array();
+                foreach ($stops as $stop) {
+                        $response[] = $stop->description;
+                }
+
+                echo json_encode($response);
         }
 }

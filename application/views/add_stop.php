@@ -18,8 +18,9 @@
       <form class="search-form" action="<?php echo base_url(); ?>index.php/stops/find" method="post">
       <div class="row">
         <div class="span7 offset4"> 
-          <input name="search_input" type="text" class="input-block-level" 
-                 placeholder="Type in bus stop # or location" value="<?php echo set_value('search_input'); ?>">
+          <input id="search" name="search_input" type="text" class="input-block-level" data-provide="typeahead"
+                 autocomplete="off" placeholder="Type in bus stop # or location"
+                 value="<?php echo set_value('search_input'); ?>">
         </div>
 
         <div class="span1">
@@ -84,5 +85,30 @@
     <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap-dropdown.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap-alert.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap-typeahead.js"></script>
+
+    <script>
+      $(function() {
+        $("#search").typeahead({
+          source: function(typeahead, searchInput) {
+           $.ajax ({
+            url:      '<?php echo base_url(); ?>index.php/stops/find_autocomplete',
+            type:     'POST',
+            data:     'search_input=' + searchInput,
+            dataType: 'JSON',
+            async:    false,
+
+            success: function(data) {
+              typeahead.process(data);
+            },
+            updater: function (item) {
+              document.location = '<?php echo base_url(); ?>index.php/stops/find/' + encodeURIComponent(item);
+              return item;
+            }
+           });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

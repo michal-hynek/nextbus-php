@@ -39,7 +39,7 @@ class UserStops extends CI_Controller {
 			$this->userstops_model->add($userId, $stopCode);
 			$data['infoMessage'] = "The stop with code '$stopCode' was added.";
 		}
-		catch (UserStopAlreadyExists $e) {
+		catch (UserStopAlreadyExistsException $e) {
 			$data['errorMessage'] = "You already have bus stop with code '$stopCode'.";
 		}
 		catch (StopNotFoundException $e) {

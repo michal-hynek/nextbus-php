@@ -37,6 +37,13 @@
         </div>
         <?php endif; ?>
 
+        <?php if(isset($infoMessage)): ?>
+        <div class="span8 offset4 alert alert-info" />
+          <?php echo $infoMessage; ?>
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+        </div>
+        <?php endif; ?>
+
         <div class="span8 offset4 search-result">
 
           <?php if (isset($searchResult) && sizeof($searchResult) > 0): ?>
@@ -49,7 +56,12 @@
               <tr>
                 <td><?php echo $stop->code; ?></td>
                 <td><?php echo $stop->name; ?></td>
-                <td class="rightCell"><a class="btn btn-primary">Add</a></td>
+                <td class="rightCell">
+                  <a class="btn btn-primary" 
+                     href="<?php echo base_url();?>index.php/userstops/add/<?php echo $this->session->userdata('user_id');?>/<?php echo $stop->code; ?>">
+                     Add
+                  </a>
+                </td>
               </tr>
             <?php endforeach; ?>
           </table>

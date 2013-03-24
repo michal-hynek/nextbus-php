@@ -1,6 +1,7 @@
 <?php
 
 require_once('restricted.php');
+require_once(APPPATH . 'exceptions/UserStopAlreadyExists.php');
 
 class UserStops extends CI_Controller {
 
@@ -27,6 +28,20 @@ class UserStops extends CI_Controller {
 //		print_r($data['stop_data']); 
 
 		$this->load->view('userstops', $data);
+	}
+
+	public function add($userId, $stopCode) {
+		$data = array();
+
+		try {
+			$this->userstops_model->add($userId, $stopCode);
+			$data['infoMessage'] = "The stop with code '$stopCode' was added.";
+		}
+		catch (UserStopAlreadyExists $e) {
+			$data['errorMessage'] = "The user already has bus stop with code '$stopCode'.";
+		}
+
+		$this->load->view('add_stop', $data);
 	}
 		
 }

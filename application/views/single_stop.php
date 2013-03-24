@@ -19,7 +19,7 @@
           <div class="row-fluid">            
               <div class="span8 offset2 nextbus-pod">
                
-                <?php echo $stop_table;  ?>
+                <?php $this->load->view('stop_table', TRUE); ?>
 
               </div><!--/span-->
             </div><!--/row-->

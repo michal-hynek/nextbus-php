@@ -1,5 +1,8 @@
 <?php 
 
+require_once(APPPATH . 'exceptions/UserStopAlreadyExistsException.php');
+require_once(APPPATH . 'exceptions/StopNotFoundException.php');
+
 class Userstops_model extends CI_model {
 
 	public function __construct() {
@@ -30,6 +33,28 @@ class Userstops_model extends CI_model {
 		}
 
 		return $arrivalData;
+	}
+
+	public function add($userId, $stopCode) {
+		$stopQuery = $this->db->from($this->db->dbprefix('stops'))->where('code', $stopCode)->get();
+
+		if ($stopQuery->num_rows() > 0) {
+			$stopId = $stopQuery->row()->code;
+
+			// check the stop is not already added
+			$uniqueQuery = $this->db
+								->from($this->db->dbprefix('user_stops'))
+								->where(array('stop_id' => $stopId, 'user_id' => $userId))->get();
+			if ($uniqueQuery->num_rows == 0) {
+				$this->db->insert($this->db->dbprefix('user_stops'), array('user_id' => $userId, 'stop_id' => $stopId));	
+			}
+			else {
+				throw new UserStopAlreadyExists("User already has the stop with code '$stopCode'");
+			}
+		}
+		else {
+			throw new StopNotFoundException("Stop with code '$stopCode' doesn't exist");
+		}
 	}
 
 

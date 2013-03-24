@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/comp2920/Assignment3';
+$config['base_url']	= 'http://localhost/ci/comp-2920-assignment-3/';
 
 /*
 |--------------------------------------------------------------------------

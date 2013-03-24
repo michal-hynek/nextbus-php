@@ -2,7 +2,7 @@
 
 require_once('restricted.php');
 
-class UserStops extends Restricted {
+class UserStops extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -13,9 +13,16 @@ class UserStops extends Restricted {
 
 	public function index() {
 		$data = array();
-		$data['arrivals'] = $this->userstops_model->getArrivals();
+		$data['stops'] = array(50325, 50326); // stops will be coming into the tool as an array of up to 4 numbers only the first four entries will be accepted	$data = array();
 
-		$this->load->view('userstops');
+		for ( $i = 0; $i < count($data['stops']); $i++ ) {
+			$data['stop_data'][$i] = $this->userstops_model->get_arrivals($data['stops'][$i]);
+		}
+
+		print_r($data['stops']);
+		echo "<br>";
+		echo "<br>";
+		print_r($data['stop_data']);
 	}
 		
 }

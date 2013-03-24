@@ -58,6 +58,32 @@ class Userstops_model extends CI_model {
 	}
 
 
+	/*
+	* Returns an array of stop numbers belonging to a specific user ID
+	* param: int $userId
+	* return: array[int] $stops
+	* throws: UserHasNoStopsException 
+	*/
+	public function getUserStops($userId)  {
+		
+		$stops = array();
+		$userStopsQuery = $this->db->from($this->db->dbprefix('user_stops'))->where('user_id', $userId)->get();
+
+		if ($userStopsQuery->num_rows() > 0)  {
+			$results = $userStopsQuery->result_array();
+
+			foreach( $results as $row ) {
+				$stops[] = $row['stop_id'];
+			}
+
+			return $stops;
+		}
+		else {
+			throw new UserHasNoStopsException("No stops have been added.");
+		}
+
+
+	}
 
 	private function getConfig() {
 		$this->load->library('restapiclient');

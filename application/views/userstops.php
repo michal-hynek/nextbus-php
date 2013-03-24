@@ -12,14 +12,14 @@
     <?php include 'navbar_logged_in.php'; ?>
 
     <div class="container-fluid">
-      <a class="btn btn-primary pull-left add-stop">Add Bus Stop</a>
-      <a class="btn btn-primary pull-right refresh">Update Now!</a>
-      <p class="pull-right"><strong>Last update at 8:17pm</strong></p>
+      <a class="btn btn-primary pull-left add-stop" href="<?php echo base_url(); ?>index.php/stops">Add Bus Stop</a>
+      <a class="btn btn-primary pull-right refresh" href="<?php echo base_url(); ?>index.php/userstops">Update Now!</a>
+      <p class="pull-right"><strong>Last update at <?php echo date("g:ia");?></strong></p>
 
       <?php $newRow = TRUE; // tracks whether at start or end of div row.  TRUE == start
             $element = 0; // tracks which element of the $stops array we are at
             $lastElement = sizeof($stops) - 1; // the last element number
-      foreach( $stops as $stop => $stopId): ?>
+      foreach( $stops as $stop => $stopId ): ?>
 
         <?php if( $newRow == TRUE ): ?>
           <div class="row-fluid">
@@ -28,8 +28,7 @@
         <?php endif ?>     
 
           <div class="span6 nextbus-pod">        
-            <?php //$stopId = $stop; 
-                  include 'stop_table.php';?>
+            <?php include 'stop_table.php';?>
           </div><!--/span-->
      
         <?php if( $newRow == FALSE || $element == $lastElement): ?>

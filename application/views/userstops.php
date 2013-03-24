@@ -3,7 +3,6 @@
 <html lang="en">
   <head>
     <?php include 'header.php'; ?>
-    <?php define('MAXIMUM_ROWS_TO_DISPLAY', 5); ?>
 
     <link href="<?php echo base_url(); ?>assets/css/busstop.css" rel="stylesheet">
   </head>
@@ -19,63 +18,13 @@
       <div class="row-fluid">
         <div class="span12">
           <div class="row-fluid">
+            <div class="span6 nextbus-pod">        
+              
+              <?php $this->load->view('stop_table', TRUE); ?>
             
-            <?php foreach ($stops as $stopNumber): ?> 
-            
+            </div><!--/span-->
+
               <div class="span6 nextbus-pod">
-                <h3>W BROADWAY @ BURRARD ST</h3>
-                <div>
-                  <strong>Eastbound</strong>
-                  <a class="btn btn-primary btn-danger btn-small delete">Delete</a><br/>
-                  <strong><?php echo $stops[0]; ?></strong>
-                </div>
-                <br/>
-                <table class="table busstop-table">
-                  <th>Bus #</th>
-                  <th>Destination</th>
-                  <th class="rightCell">Arrives in</th>
-
-                  <?php
-                    for ( $i = 0; $i < MAXIMUM_ROWS_TO_DISPLAY; $i++ ): ?>    
-
-                  <tr>
-                    <td><?php echo $stop_data[$stopNumber][$i]['bus_number']; ?></td>
-                    <td><?php echo $stop_data[$stopNumber][$i]['destination']; ?></td>
-                    <td class="rightCell"><?php echo $stop_data[$stopNumber][$i]['time']; ?></td>
-                  </tr> 
-
-                  <?php endfor ?>
-
-                </table>
-
-                <small>* indicates scheduled departure time</small>
-
-                <div class="pagination pagination-mini pull-right">
-                  <ul>
-
-                    <li><a href="#">&laquo;</a></li>
-                   
-                    <?php 
-                      $numberOfPages = floor($stop_data[$stopNumber]['number_of_buses'] / 5);
-                      $pageNumber = 1;
-                      while ($pageNumber <= $numberOfPages): ?>
-                       
-                        <li><a href="#"><?php echo $pageNumber; ?></a></li>
-                    
-                    <?php 
-                      $pageNumber++;
-                      endwhile ?>
-                    
-                    <li><a href="#">&raquo;</a></li>
-
-                 </ul>
-                </div>
-              </div>
-
-            <?php endforeach ?>
-          
-        
-            <div class="span6 nextbus-pod">
               <h3>W BROADWAY @ BURRARD ST</h3>
               <div>
                 <strong>Eastbound</strong>

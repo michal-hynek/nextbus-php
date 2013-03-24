@@ -28,8 +28,10 @@ class Userstops_model extends CI_model {
 			$i++;
 			
 		}
+
 		return $arrivalData;
 	}
+
 
 
 	private function getConfig() {

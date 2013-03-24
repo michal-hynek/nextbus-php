@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <?php include 'header.php'; ?>
+    <?php define('MAXIMUM_ROWS_TO_DISPLAY', 5); ?>
 
     <link href="<?php echo base_url(); ?>assets/css/busstop.css" rel="stylesheet">
   </head>
@@ -18,14 +19,15 @@
       <div class="row-fluid">
         <div class="span12">
           <div class="row-fluid">
-            <div class="span6 nextbus-pod">
-
-              <?php foreach ($stops as $stop): ?> 
+            
+            <?php foreach ($stops as $stopNumber): ?> 
+            
+              <div class="span6 nextbus-pod">
                 <h3>W BROADWAY @ BURRARD ST</h3>
                 <div>
                   <strong>Eastbound</strong>
                   <a class="btn btn-primary btn-danger btn-small delete">Delete</a><br/>
-                  <strong><?php echo $stop; ?></strong>
+                  <strong><?php echo $stops[0]; ?></strong>
                 </div>
                 <br/>
                 <table class="table busstop-table">
@@ -33,60 +35,45 @@
                   <th>Destination</th>
                   <th class="rightCell">Arrives in</th>
 
-                  <?php foreach ($stop_data[$stop] as $bus): ?>    
+                  <?php
+                    for ( $i = 0; $i < MAXIMUM_ROWS_TO_DISPLAY; $i++ ): ?>    
 
                   <tr>
-                    <td><?php echo $bus['bus_number']; ?></td>
-                    <td><?php echo $bus['destination']; ?></td>
-                    <td class="rightCell"><?php echo $bus['time']; ?></td>
-                  </tr>
+                    <td><?php echo $stop_data[$stopNumber][$i]['bus_number']; ?></td>
+                    <td><?php echo $stop_data[$stopNumber][$i]['destination']; ?></td>
+                    <td class="rightCell"><?php echo $stop_data[$stopNumber][$i]['time']; ?></td>
+                  </tr> 
 
-                  <?php endforeach ?>
+                  <?php endfor ?>
 
-
-
-  <!--             <tr>
-                    <td>14</td>
-                    <td>DOWNTOWN</td>
-                    <td class="rightCell">1 min</td>
-                  </tr>
-                  <tr>
-                    <td>14</td>
-                    <td>TO GRANVILLE</td>
-                    <td class="rightCell">1 min</td>
-                  </tr>
-                  <tr>
-                    <td>9</td>
-                    <td>COMM'L-BDWAY STN</td>
-                    <td class="rightCell">2 min</td>
-                  </tr>
-                  <tr>
-                    <td>14</td>
-                    <td>DOWNTOWN</td>
-                    <td class="rightCell">12 min</td>
-                  </tr>
-                  <tr>
-                    <td>9</td>
-                    <td>BOUNDARY</td>
-                    <td class="rightCell">14 min</td>
-                  </tr>    -->
                 </table>
 
                 <small>* indicates scheduled departure time</small>
+
                 <div class="pagination pagination-mini pull-right">
                   <ul>
-                   <li><a href="#">&laquo;</a></li>
-                   <li><a href="#">1</a></li>
-                   <li><a href="#">2</a></li>
-                   <li><a href="#">3</a></li>
-                   <li><a href="#">4</a></li>
-                   <li><a href="#">&raquo;</a></li>
+
+                    <li><a href="#">&laquo;</a></li>
+                   
+                    <?php 
+                      $numberOfPages = floor($stop_data[$stopNumber]['number_of_buses'] / 5);
+                      $pageNumber = 1;
+                      while ($pageNumber <= $numberOfPages): ?>
+                       
+                        <li><a href="#"><?php echo $pageNumber; ?></a></li>
+                    
+                    <?php 
+                      $pageNumber++;
+                      endwhile ?>
+                    
+                    <li><a href="#">&raquo;</a></li>
+
                  </ul>
                 </div>
-              </div><!--/span-->
+              </div>
 
             <?php endforeach ?>
-
+          
         
             <div class="span6 nextbus-pod">
               <h3>W BROADWAY @ BURRARD ST</h3>

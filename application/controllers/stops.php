@@ -7,6 +7,6 @@ class Stops extends Restricted {
 	}
 
 	public function find_stop($searchInput) {
-
+		
 	}
 }

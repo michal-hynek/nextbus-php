@@ -18,7 +18,7 @@ class UserStops extends CI_Controller {
 	public function index() {
 
 		$data = array();
-		$data['stops'] = array(50325); // stops will be coming into the tool as an array of up to 4 numbers only the first four entries will be accepted	$data = array();
+		$data['stops'] = array(50325, 50326, 50210, 50328); // stops will be coming into the tool as an array of up to 4 numbers only the first four entries will be accepted	$data = array();
 
 		// add the data for each stop
 		for ( $i = 0; $i < count($data['stops']); $i++ ) {
@@ -30,6 +30,7 @@ class UserStops extends CI_Controller {
 		}
 	//	$data['stop_table'] = $this->load->view('stop_table', $data);
 		$this->load->view('userstops', $data);
+
 	}
 
 	public function add($userId, $stopCode) {

@@ -1,11 +1,8 @@
-              
-              <?php $stop_data_element = 0; // this is a default amount
-                    $stopId = $stops[$stop_data_element];?>
 
               <h3>W BROADWAY @ BURRARD ST</h3>
                 <div>
                   <strong>Eastbound</strong><br/>
-                  <strong><?php echo $stopId; ?></strong>
+                  <strong>Stop #<?php echo $stopId; ?></strong>
                 </div>
                 <br/>
                 <table class="table busstop-table">

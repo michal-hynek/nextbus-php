@@ -44,18 +44,20 @@
         </div>
         <?php endif; ?>
 
-        <div class="span8 offset4 search-result">
+        <div class="span10 offset3 search-result">
 
           <?php if (isset($searchResult) && sizeof($searchResult) > 0): ?>
           <table class="table search-result-table">
             <th>Stop #</th>
             <th>Name</th>
+            <th>Description</th>
             <th></th>
 
             <?php foreach ($searchResult as $stop): ?>
               <tr>
                 <td><?php echo $stop->code; ?></td>
                 <td><?php echo $stop->name; ?></td>
+                <td><?php echo $stop->description; ?></td>
                 <td class="rightCell">
                   <a class="btn btn-primary" 
                      href="<?php echo base_url();?>index.php/userstops/add/<?php echo $this->session->userdata('user_id');?>/<?php echo $stop->code; ?>">

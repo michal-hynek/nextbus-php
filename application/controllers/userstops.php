@@ -13,16 +13,20 @@ class UserStops extends CI_Controller {
 
 	public function index() {
 		$data = array();
-		$data['stops'] = array(50325, 50326); // stops will be coming into the tool as an array of up to 4 numbers only the first four entries will be accepted	$data = array();
+		$data['stops'] = array(50325); // stops will be coming into the tool as an array of up to 4 numbers only the first four entries will be accepted	$data = array();
 
+		// add the data for each stop
 		for ( $i = 0; $i < count($data['stops']); $i++ ) {
-			$data['stop_data'][$i] = $this->userstops_model->get_arrivals($data['stops'][$i]);
+			$key = $data['stops'][$i];
+			$data['stop_data'][$key] = $this->userstops_model->get_arrivals($key);
 		}
 
-		print_r($data['stops']);
+	/*	print_r($data['stops']);
 		echo "<br>";
-		echo "<br>";
-		print_r($data['stop_data']);
+		echo "<br>"; */
+//		print_r($data['stop_data']); 
+
+		$this->load->view('userstops', $data);
 	}
 		
 }

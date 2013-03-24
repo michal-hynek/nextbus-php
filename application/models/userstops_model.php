@@ -23,8 +23,8 @@ class Userstops_model extends CI_model {
 
 		foreach ($arrivals as $arrival) {
 			$arrivalData[$i] = array(	'bus_number' 	=> $arrival->getBusNumber(), 
-											'destination' 	=> $arrival->getDestination(), 
-											'time' 			=> $arrival->getMinutesTillArrival());
+										'destination' 	=> $arrival->getDestination(), 
+										'time' 			=> $arrival->getMinutesTillArrival());
 			$i++;
 			
 		}

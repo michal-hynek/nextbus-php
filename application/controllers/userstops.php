@@ -1,7 +1,8 @@
 <?php
 
 require_once('restricted.php');
-require_once(APPPATH . 'exceptions/UserStopAlreadyExists.php');
+require_once(APPPATH . 'exceptions/UserStopAlreadyExistsException.php');
+require_once(APPPATH . 'exceptions/StopNotFoundException.php');
 
 class UserStops extends CI_Controller {
 
@@ -38,7 +39,10 @@ class UserStops extends CI_Controller {
 			$data['infoMessage'] = "The stop with code '$stopCode' was added.";
 		}
 		catch (UserStopAlreadyExists $e) {
-			$data['errorMessage'] = "The user already has bus stop with code '$stopCode'.";
+			$data['errorMessage'] = "You already have bus stop with code '$stopCode'.";
+		}
+		catch (StopNotFoundException $e) {
+			$data['errorMessage'] = "The stop with code '$stopCode' doesn't exist.";
 		}
 
 		$this->load->view('add_stop', $data);

@@ -1,6 +1,6 @@
 <?php 
 
-require_once(APPPATH . 'exceptions/UserStopAlreadyExists.php');
+require_once(APPPATH . 'exceptions/UserStopAlreadyExistsException.php');
 require_once(APPPATH . 'exceptions/StopNotFoundException.php');
 
 class Userstops_model extends CI_model {

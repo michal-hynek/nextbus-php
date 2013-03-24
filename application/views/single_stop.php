@@ -19,7 +19,7 @@
           <div class="row-fluid">            
               <div class="span8 offset2 nextbus-pod">
                
-                <?php $stopId = $stops[0];
+                <?php $stopId = $stops[0]; // should only be 1 element.
                       include 'stop_table.php';?>
 
               </div><!--/span-->

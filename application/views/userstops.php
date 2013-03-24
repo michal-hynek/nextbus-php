@@ -15,60 +15,33 @@
       <a class="btn btn-primary pull-left add-stop">Add Bus Stop</a>
       <a class="btn btn-primary pull-right refresh">Update Now!</a>
       <p class="pull-right"><strong>Last update at 8:17pm</strong></p>
-      <div class="row-fluid">
-        <div class="span12">
+
+      <?php $newRow = TRUE; // tracks whether at start or end of div row.  TRUE == start
+            $element = 0; // tracks which element of the $stops array we are at
+            $lastElement = sizeof($stops) - 1; // the last element number
+      foreach( $stops as $stop => $stopId): ?>
+
+        <?php if( $newRow == TRUE ): ?>
           <div class="row-fluid">
-            <div class="span6 nextbus-pod">        
+            <div class="span12">
+              <div class="row-fluid">
+        <?php endif ?>     
 
-              <?php $stopId = $stops[0];
-                    include 'stop_table.php';?>
-              
-              </div><!--/span-->
-              
-              <?php if(!empty($stops[1])): ?>  
-
-                <div class="span6 nextbus-pod">
-                  
-              <?php $stopId = $stops[1];
-                    include 'stop_table.php';?>
-
-              </div><!--/span-->
-            
-            <?php endif ?>
-
-          </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
-
-      <div class="row-fluid">
-        <div class="span12">
-          <div class="row-fluid">
-
-            <?php if(!empty($stops[2])): ?>  
-
-              <div class="span6 nextbus-pod">
-                
-            <?php $stopId = $stops[2];
+          <div class="span6 nextbus-pod">        
+            <?php //$stopId = $stop; 
                   include 'stop_table.php';?>
-
-              </div><!--/span-->
-          
-            <?php endif ?>
-
-            <?php if(!empty($stops[3])): ?>  
-
-              <div class="span6 nextbus-pod">
-            
-            <?php $stopId = $stops[3];
-                  include 'stop_table.php';?>
-
-              </div><!--/span-->
-
-            <?php endif ?>
-          
+          </div><!--/span-->
+     
+        <?php if( $newRow == FALSE || $element == $lastElement): ?>
           </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
+            </div><!--/span-->
+              </div><!--/row-->
+        <?php endif ?>   
+
+        <?php $newRow = !$newRow;
+              $element++; ?>
+      
+      <?php endforeach ?>
 
       <hr>
 
@@ -77,7 +50,6 @@
       </footer>
 
     </div><!--/.fluid-container-->
-
 
     <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap-dropdown.js"></script>

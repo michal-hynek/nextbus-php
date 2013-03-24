@@ -16,9 +16,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Stops<b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Show All Bus Stops</a></li>
-              <li><a href="#">Update Bus Stops</a></li>
-              <li><a href="#">Add Bus Stop</a></li>
+              <li><a href="<?php echo base_url(); ?>index.php/userstops">Show All Bus Stops</a></li>
+              <li><a href="<?php echo base_url(); ?>index.php/userstops">Update Bus Stops</a></li>
+              <li><a href="<?php echo base_url(); ?>index.php/stops">Add Bus Stop</a></li>
               <li class="divider"></li>
               <li class="nav-header">Show Individual Bus Stops</li>
               <li><a href="#">W BROADWAY @ BURRARD ST</a></li>

@@ -15,10 +15,11 @@
         <h1 class="title">Add Bus Stop</h1>
       </div>
 
-      <form class="search-form" action="<?php echo base_url(); ?>index.php/stops/find" method="post">
+      <form id="search_form" class="search-form" action="<?php echo base_url(); ?>index.php/stops/find" method="post">
       <div class="row">
         <div class="span7 offset4"> 
-          <input id="search" name="search_input" type="text" class="input-block-level" data-provide="typeahead"
+          <input id="search_input" name="search_input" type="text" class="input-block-level" 
+                 data-provide="typeahead"
                  autocomplete="off" placeholder="Type in bus stop # or location"
                  value="<?php echo set_value('search_input'); ?>">
         </div>
@@ -89,26 +90,26 @@
 
     <script>
       $(function() {
-        $("#search").typeahead({
-          source: function(typeahead, searchInput) {
-           $.ajax ({
-            url:      '<?php echo base_url(); ?>index.php/stops/find_autocomplete',
-            type:     'POST',
-            data:     'search_input=' + searchInput,
-            dataType: 'JSON',
-            async:    false,
-
-            success: function(data) {
-              typeahead.process(data);
-            },
-            updater: function (item) {
-              document.location = '<?php echo base_url(); ?>index.php/stops/find/' + encodeURIComponent(item);
-              return item;
-            }
-           });
-          }
-        });
+        $('#search_input').typeahead({
+          source: function (query, process) {
+            $.ajax ({
+              url:      '<?php echo base_url(); ?>index.php/stops/find_autocomplete',
+              type:     'POST',
+              data:     'search_input=' + query,
+              dataType: 'JSON',
+              async:    true,
+              success: function(data) {
+                process(data);
+              }
+          });
+        }
       });
+
+      var onSelect = function(event) {
+        $('#search_form').submit();
+      }
+      $('#search_input').on('change', onSelect);
+    });
     </script>
   </body>
 </html>

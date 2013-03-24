@@ -10,13 +10,14 @@
                   <th>Destination</th>
                   <th class="rightCell">Arrives in</th>
 
-                  <?php
-                    for ( $i = 0; $i < MAXIMUM_ROWS_TO_DISPLAY; $i++ ): ?>    
+                  <?php for ( $i = 0; $i < MAXIMUM_ROWS_TO_DISPLAY; $i++ ): ?>    
 
                   <tr>
-                    <td><?php echo $stop_data[$stopId][$i]['bus_number']; ?></td>
-                    <td><?php echo $stop_data[$stopId][$i]['destination']; ?></td>
-                    <td class="rightCell"><?php echo $stop_data[$stopId][$i]['time']; ?> min</td>
+                    <?php if(!empty($stop_data[$stopId][$i])): ?>
+                      <td><?php echo $stop_data[$stopId][$i]['bus_number']; ?></td>
+                      <td><?php echo $stop_data[$stopId][$i]['destination']; ?></td>
+                      <td class="rightCell"><?php echo $stop_data[$stopId][$i]['time']; ?> min</td>
+                    <?php endif ?>
                   </tr> 
 
                   <?php endfor ?>

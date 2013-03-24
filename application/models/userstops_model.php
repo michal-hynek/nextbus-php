@@ -48,7 +48,7 @@ class Userstops_model extends CI_model {
 				$this->db->insert($this->db->dbprefix('user_stops'), array('user_id' => $userId, 'stop_id' => $stopId));	
 			}
 			else {
-				throw new UserStopAlreadyExists("User already has the stop with code '$stopCode'");
+				throw new UserStopAlreadyExistsException("User already has the stop with code '$stopCode'");
 			}
 		}
 		else {

@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php include 'header.php'; ?>
+    <?php 
+      include 'header.php'; ?>
 
     <link href="<?php echo base_url(); ?>assets/css/busstop.css" rel="stylesheet">
   </head>
@@ -19,7 +20,7 @@
       <?php $newRow = TRUE; // tracks whether at start or end of div row.  TRUE == start
             $element = 0; // tracks which element of the $stops array we are at
             $lastElement = sizeof($stops) - 1; // the last element number
-      foreach( $stops as $stop => $stopId ): ?>
+      foreach( $stops as $stop => $stopCode ): ?>
 
         <?php if( $newRow == TRUE ): ?>
           <div class="row-fluid">

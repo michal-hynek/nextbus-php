@@ -1,8 +1,8 @@
 
-              <h3>W BROADWAY @ BURRARD ST</h3>
+              <h3><?php echo $stop_names[$stopCode]; ?> </h3>
                 <div>
                   <strong>Eastbound</strong><br/>
-                  <strong>Stop #<?php echo $stopId; ?></strong>
+                  <strong>Stop #<?php echo $stopCode; ?></strong>
                 </div>
                 <br/>
                 <table class="table busstop-table">
@@ -13,10 +13,10 @@
                   <?php for ( $i = 0; $i < MAXIMUM_ROWS_TO_DISPLAY; $i++ ): ?>    
 
                   <tr>
-                    <?php if(!empty($stop_data[$stopId][$i])): ?>
-                      <td><?php echo $stop_data[$stopId][$i]['bus_number']; ?></td>
-                      <td><?php echo $stop_data[$stopId][$i]['destination']; ?></td>
-                      <td class="rightCell"><?php echo $stop_data[$stopId][$i]['time']; ?> min</td>
+                    <?php if(!empty($stop_data[$stopCode][$i])): ?>
+                      <td><?php echo $stop_data[$stopCode][$i]['bus_number']; ?></td>
+                      <td><?php echo $stop_data[$stopCode][$i]['destination']; ?></td>
+                      <td class="rightCell"><?php echo $stop_data[$stopCode][$i]['time']; ?> min</td>
                     <?php endif ?>
                   </tr> 
 
@@ -32,7 +32,7 @@
                     <li><a href="#">&laquo;</a></li>
                    
                     <?php 
-                      $numberOfPages = floor($stop_data[$stopId]['number_of_buses'] / 5);
+                      $numberOfPages = floor($stop_data[$stopCode]['number_of_buses'] / 5);
                       $pageNumber = 1;
                       while ($pageNumber <= $numberOfPages): ?>
                        

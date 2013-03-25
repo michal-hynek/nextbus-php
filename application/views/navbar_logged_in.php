@@ -21,10 +21,9 @@
               <li><a href="<?php echo base_url(); ?>index.php/stops">Add Bus Stop</a></li>
               <li class="divider"></li>
               <li class="nav-header">Show Individual Bus Stops</li>
-              <li><a href="#">W BROADWAY @ BURRARD ST</a></li>
-              <li><a href="#">W BROADWAY @ BURRARD ST</a></li>
-              <li><a href="#">W BROADWAY @ BURRARD ST</a></li>
-              <li><a href="#">W BROADWAY @ BURRARD ST</a></li>
+                <?php foreach($stops as $stop): ?>
+                  <li><a href="<?php echo base_url(); ?>index.php/userstops/show_stop/<?php echo $stop; ?>"><?php echo $stop_names[$stop]; ?></a></li>
+                <?php endforeach ?>
             </ul>
           </li>
         </ul>

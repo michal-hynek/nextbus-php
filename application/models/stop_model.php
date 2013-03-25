@@ -16,12 +16,13 @@ class Stop_model extends CI_model {
 			}
 		}
 		else if (!empty($searchInput)) {
+			// search by bus stop description
 			try {
 				$stops = $this->getByDescription($searchInput);
 			}
 			catch (StopNotFoundException $e) {
-				return array();	
-			}	
+				return array();
+			}
 		}
 		else {
 			return array();
@@ -51,6 +52,4 @@ class Stop_model extends CI_model {
 			throw new StopNotFoundException("Stop with name '$description' doesn't exist");	
 		}
 	}
-
-	
 }

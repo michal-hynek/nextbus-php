@@ -12,8 +12,8 @@
     <?php include 'navbar_logged_in.php'; ?>
 
     <div class="container-fluid">
-      <a class="btn btn-primary pull-right refresh">Update Now!</a>
-      <p class="pull-right"><strong>Last update at 8:17pm</strong></p>
+      <a class="btn btn-primary pull-right refresh" href="<?php echo base_url(); ?>index.php/userstops">Update Now!</a>
+      <p class="pull-right"><strong>Last update at <?php echo date("g:ia");?></strong></p>
       <div class="row-fluid">
         <div class="span12">
           <div class="row-fluid">            

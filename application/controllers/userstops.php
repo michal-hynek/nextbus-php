@@ -3,6 +3,7 @@
 require_once('restricted.php');
 require_once(APPPATH . 'exceptions/UserStopAlreadyExistsException.php');
 require_once(APPPATH . 'exceptions/StopNotFoundException.php');
+require_once(APPPATH . 'exceptions/UserHasNoStopsException.php');
 
 define('MAXIMUM_ROWS_TO_DISPLAY', 5);
 
@@ -18,7 +19,14 @@ class UserStops extends CI_Controller {
 	public function index() {
 
 		$data = array();
-		$data['stops'] = array(50325, 50326, 50329, 50210, 50328, 50325, 50325 ); 
+		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
+		
+		try {
+			$data['stops'] = $this->userstops_model->getUserStops($data['user_id']); 
+		}
+		catch (UserHasNoStopsException $e) {
+			$data['errorMessage'] = "You currently have no saved stops.";
+		}
 
 		// add the data for each stop
 		for ( $i = 0; $i < count($data['stops']); $i++ ) {

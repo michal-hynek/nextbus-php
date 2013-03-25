@@ -3,7 +3,7 @@
 require_once 'restricted.php';
 
 class Stops extends Restricted {
-
+        
         public function index() {
                 $this->load->view('add_stop');
         }

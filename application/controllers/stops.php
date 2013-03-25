@@ -47,6 +47,6 @@ class Stops extends Restricted {
                         $response[] = $stop->description;
                 }
 
-                echo json_encode(array_unique($response));
+                echo json_encode($response);
         }
 }

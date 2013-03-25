@@ -12,17 +12,13 @@ class Location_model extends CI_model {
 		foreach ($locations as $location) {
 			$longitude = $location->longitude;
 			$latitude = $location->latitude;
-			$minLongitude = $longitude - ($radius / 111);
-			$maxLongitude = $longitude + ($radius / 111);
 
-			$minLatitude = $latitude - ($radius / 111);
-			$maxLatitude = $latitude + ($radius / 111);
-
-			$sql =	"select * from " . $this->db->dbprefix('stops') . " " .
-					"where longitude >= ? and longitude <= ? and " .
-					"latitude >= ? and latitude <= ?";
-			$query = $this->db->query($sql, array($minLongitude, $maxLongitude, $minLatitude, $maxLatitude));
-
+			$sql = "SELECT *, SQRT(" .
+    				"POW(69.1 * (latitude - ?), 2) + " .
+    				"POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2)) AS distance " .
+					"FROM " . $this->db->dbprefix("stops") . " HAVING distance < ? ORDER BY distance";
+			$query = $this->db->query($sql, array($latitude, $longitude, $radius));
+			
 			$stops = array_merge($stops, $query->result());
 		}
 

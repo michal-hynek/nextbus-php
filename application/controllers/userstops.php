@@ -15,7 +15,9 @@ class UserStops extends CI_Controller {
 
 	}
 
-
+	/**
+	* index Function loads the data for the main userstops.php view
+	*/
 	public function index() {
 
 		$data = array();
@@ -47,8 +49,14 @@ class UserStops extends CI_Controller {
 
 	}
 
+	/**
+	* Function attempts to add the requested stop the user_stops table in DB
+	* param: int $userId, int $stopCode
+	*/
 	public function add($userId, $stopCode) {
+		
 		$data = array();
+		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
 
 		try {
 
@@ -63,6 +71,20 @@ class UserStops extends CI_Controller {
 			$data['errorMessage'] = "The stop with code '$stopCode' doesn't exist.";
 		}
 
+		// Now add general stops data for the views
+		try {
+
+			$data['stops'] = $this->userstops_model->getUserStops($data['user_id']); 
+			$data['stop_names'] = $this->userstops_model->getStopNames($data['stops']);
+
+		}
+		catch (UserHasNoStopsException $e) {
+			$data['errorMessage'] = "You currently have no saved stops.";
+		}
+		catch (StopNotFoundException $e) {
+			$data['errorMessage'] = "Stop(s) not found.";
+		}
+
 		$this->load->view('add_stop', $data);
 	}
 
@@ -74,7 +96,6 @@ class UserStops extends CI_Controller {
 	public function show_stop($stopCode) {
 
 		$data = array();
-
 		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
 
 		try {
@@ -95,6 +116,19 @@ class UserStops extends CI_Controller {
 
 		$this->load->view('single_stop', $data);
 
+	}
+
+	/**
+	* Function deletes the selected stop from 
+	* param: int $userId, int $stopCode
+	*/
+	public function delete_stop($stopCode) {
+
+		$data = array();
+		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
+
+		$this->userstops_model->delete($data['user_id'], $stopCode);
+		$this->index();
 	}
 		
 }

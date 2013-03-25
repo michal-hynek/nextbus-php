@@ -2,6 +2,7 @@
               <h3><?php echo $stop_names[$stopCode]; ?> </h3>
                 <div>
                   <strong>Eastbound</strong><br/>
+                    <a name="delete<?php echo $stopCode ?>" href="<?php echo base_url(); ?>index.php/userstops/delete_stop/<?php echo $stopCode; ?>" class="btn btn-primary btn-danger btn-small delete">Delete</a><br/>
                   <strong>Stop #<?php echo $stopCode; ?></strong>
                 </div>
                 <br/>

@@ -57,6 +57,16 @@ class Userstops_model extends CI_model {
 		}
 	}
 
+	/*
+	* Deletes a particular user's stop from the database
+	* param: int $userId, int $stopCode
+	*/
+	public function delete($userId, $stopCode) {
+
+		$this->db->delete($this->db->dbprefix('user_stops'), array('user_id' => $userId, 'stop_id' => $stopCode));
+
+	}
+
 
 	/*
 	* Returns an array of stop numbers belonging to a specific user ID

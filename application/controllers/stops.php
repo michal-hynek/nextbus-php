@@ -1,8 +1,8 @@
 <?php
 
 require_once 'restricted.php';
-
-class Stops extends Restricted {
+// switch back to Restricted when done
+class Stops extends CI_Controller {   
         
         public function index() {
                 $this->load->view('add_stop');

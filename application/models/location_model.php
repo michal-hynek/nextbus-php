@@ -18,7 +18,7 @@ class Location_model extends CI_model {
     				"POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2)) AS distance " .
 					"FROM " . $this->db->dbprefix("stops") . " HAVING distance < ? ORDER BY distance";
 			$query = $this->db->query($sql, array($latitude, $longitude, $radius));
-			
+
 			$stops = array_merge($stops, $query->result());
 		}
 
@@ -26,8 +26,11 @@ class Location_model extends CI_model {
 	}
 
 	public function getByName($name) {
-		$query = $this->db->from($this->db->dbprefix('locations'))->like('name', $name)->get();
+		if (empty($name)) {
+			return array();
+		}
 
+		$query = $this->db->from($this->db->dbprefix('locations'))->like('name', $name)->get();
 		if ($query->num_rows() > 0) {
 			return $query->result();
 		}

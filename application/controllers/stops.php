@@ -1,11 +1,26 @@
 <?php
 
 require_once 'restricted.php';
+require_once(APPPATH . 'exceptions/StopNotFoundException.php');
+require_once(APPPATH . 'exceptions/UserHasNoStopsException.php');
+
 // switch back to Restricted when done
 class Stops extends CI_Controller {   
         
         public function index() {
-                $this->load->view('add_stop');
+            $data = array();
+
+            try {
+                $this->load->model('userstops_model');
+                $data['stops'] = $this->userstops_model->getUserStops($this->session->userdata('user_id')); 
+                $data['stop_names'] = $this->userstops_model->getStopNames($data['stops']);
+            }
+            catch (UserHasNoStopsException $e) {
+                $data['stops'] = NULL;
+            }
+            catch (StopNotFoundException $e) {}
+
+            $this->load->view('add_stop', $data);
         }
 
         public function find($searchInput="") {

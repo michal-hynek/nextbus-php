@@ -21,8 +21,8 @@ class UserStops extends CI_Controller {
 	public function index() {
 
 		$data = array();
-		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
-		
+		$data['user_id'] = $this->session->userdata('user_id'); 
+
 		try {
 
 			$data['stops'] = $this->userstops_model->getUserStops($data['user_id']); 
@@ -31,9 +31,11 @@ class UserStops extends CI_Controller {
 		}
 		catch (UserHasNoStopsException $e) {
 			$data['errorMessage'] = "You currently have no saved stops.";
+			$data['stops'] = NULL;
 		}
 		catch (StopNotFoundException $e) {
 			$data['errorMessage'] = "Stop(s) not found.";
+			return;
 		}
 
 		// add the data for each stop
@@ -56,7 +58,7 @@ class UserStops extends CI_Controller {
 	public function add($userId, $stopCode) {
 		
 		$data = array();
-		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
+		$data['user_id'] = $this->session->userdata('user_id');  
 
 		try {
 
@@ -96,7 +98,7 @@ class UserStops extends CI_Controller {
 	public function show_stop($stopCode) {
 
 		$data = array();
-		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
+		$data['user_id'] = $this->session->userdata('user_id');
 
 		try {
 
@@ -125,7 +127,7 @@ class UserStops extends CI_Controller {
 	public function delete_stop($stopCode) {
 
 		$data = array();
-		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
+		$data['user_id'] = $this->session->userdata('user_id');
 
 		$this->userstops_model->delete($data['user_id'], $stopCode);
 		$this->index();

@@ -21,9 +21,11 @@
               <li><a href="<?php echo base_url(); ?>index.php/stops">Add Bus Stop</a></li>
               <li class="divider"></li>
               <li class="nav-header">Show Individual Bus Stops</li>
-                <?php foreach($stops as $stop): ?>
-                  <li><a href="<?php echo base_url(); ?>index.php/userstops/show_stop/<?php echo $stop; ?>"><?php echo $stop_names[$stop]; ?></a></li>
-                <?php endforeach ?>
+                 <?php if(!empty($stops)): ?>
+                  <?php foreach($stops as $stop): ?>
+                    <li><a href="<?php echo base_url(); ?>index.php/userstops/show_stop/<?php echo $stop; ?>"><?php echo $stop_names[$stop]; ?></a></li>
+                  <?php endforeach ?>
+                 <?php endif ?>
             </ul>
           </li>
         </ul>

@@ -12,42 +12,23 @@
                   <th>Destination</th>
                   <th class="rightCell">Arrives in</th>
 
-                  <?php for ( $i = 0; $i < MAXIMUM_ROWS_TO_DISPLAY; $i++ ): ?>    
+                  <?php if($show_all == FALSE) {
+                    $rowsToDisplay = MAXIMUM_ROWS_TO_DISPLAY;
+                  } else {
+                    $rowsToDisplay = sizeof($stop_data[$stopCode]);
+                  } ?>
 
-                  <tr>
-                    <?php if(!empty($stop_data[$stopCode][$i])): ?>
-                      <td><?php echo $stop_data[$stopCode][$i]['bus_number']; ?></td>
-                      <td><?php echo $stop_data[$stopCode][$i]['destination']; ?></td>
-                      <td class="rightCell"><?php echo $stop_data[$stopCode][$i]['time']; ?> min</td>
-                    <?php endif ?>
-                  </tr> 
-
-                  <?php endfor ?>
+                    <?php for ( $i = 0; $i < $rowsToDisplay; $i++ ): ?>
+                      <tr>
+                        <?php if(!empty($stop_data[$stopCode][$i])): ?>
+                          <td><?php echo $stop_data[$stopCode][$i]['bus_number']; ?></td>
+                          <td><?php echo $stop_data[$stopCode][$i]['destination']; ?></td>
+                          <td class="rightCell"><?php echo $stop_data[$stopCode][$i]['time']; ?> min</td>
+                        <?php endif ?>
+                      </tr>
+                    <?php endfor ?>
 
                 </table>
-
-                <small>* indicates scheduled departure time</small>
-
-                <div class="pagination pagination-mini pull-right">
-                  <ul>
-
-                    <li><a href="#">&laquo;</a></li>
-                   
-                    <?php 
-                      $numberOfPages = floor($stop_data[$stopCode]['number_of_buses'] / 5);
-                      $pageNumber = 1;
-                      while ($pageNumber <= $numberOfPages): ?>
-                       
-                        <li><a href="#"><?php echo $pageNumber; ?></a></li>
-                    
-                    <?php 
-                      $pageNumber++;
-                      endwhile ?>
-                    
-                    <li><a href="#">&raquo;</a></li>
-
-                 </ul>
-                </div>
 
                 <!-- Delete Confirmation Popup -->
                 <div id="deleteConfirmationPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -63,3 +44,5 @@
                     <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">No</button>
                   </div>
                 </div>
+                
+                <small>* indicates scheduled departure time</small>

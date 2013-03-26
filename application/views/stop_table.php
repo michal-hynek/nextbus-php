@@ -30,24 +30,3 @@
                 </table>
 
                 <small>* indicates scheduled departure time</small>
-
-                <div class="pagination pagination-mini pull-right">
-                  <ul>
-
-                    <li><a href="#">&laquo;</a></li>
-                   
-                    <?php 
-                      $numberOfPages = floor($stop_data[$stopCode]['number_of_buses'] / MAXIMUM_ROWS_TO_DISPLAY);
-                      $pageNumber = 1;
-                      while ($pageNumber <= $numberOfPages): ?>
-                       
-                        <li><a href="<?php echo base_url(); ?>index.php/userstops/pagination<?php echo $stopCode . "/" . $pageNumber; ?>"><?php echo $pageNumber; ?></a></li>
-                    
-                    <?php 
-                      $pageNumber++;
-                      endwhile ?>
-                    
-                    <li><a href="#">&raquo;</a></li>
-
-                 </ul>
-                </div>

@@ -56,7 +56,7 @@
                     <h3 id="myModalLabel">Delete Confirmation</h3>
                   </div>
                   <div class="modal-body">
-                    <p>Are you sure you want to delete the bus stop.</p>
+                    <p>Are you sure you want to delete the bus stop?</p>
                   </div>
                   <div class="modal-footer">
                     <a name="delete<?php echo $stopCode ?>" href="<?php echo base_url(); ?>index.php/userstops/delete_stop/<?php echo $stopCode; ?>" class="btn btn-primary btn-danger">Yes</a>

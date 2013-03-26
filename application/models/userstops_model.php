@@ -91,27 +91,22 @@ class Userstops_model extends CI_model {
 		else {
 			throw new UserHasNoStopsException("No stops have been added.");
 		}
-
-
 	}
 
 	/*
-	* Retrieves the name of the stop from the database
+	* Retrieves the name of the stop from the database, and puts the direction at the start of the string
 	* param: array[int] $stopCodes 
 	* return: array[string] $stopNames
 	*/
 	public function getStopNames($stopCodes) {
-
-	//	$sql = "select * from " . $this->db->dbprefix("stops") . " where code in (?)";
-	//	$stopNamesQuery = $this->db->query($sql, implode(",", $stopCodes));
-	//	$codes = implode(",", $stopCodes);
 		
 		$stopNamesQuery = $this->db->from($this->db->dbprefix('stops'))->where_in('code', $stopCodes)->get();
 
 		if ($stopNamesQuery->num_rows() > 0)  {
 			$results = $stopNamesQuery->result_array();
+			
 			foreach( $results as $row ) {
-				$stopNames[$row['code']] = $row['description'];
+				$stopNames[$row['code']] = substr($row['name'], 0, 3) . $row['description'];
 			}
 
 			return $stopNames;

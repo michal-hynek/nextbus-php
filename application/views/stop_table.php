@@ -1,7 +1,25 @@
 
-              <h3><?php echo $stop_names[$stopCode]; ?> </h3>
+              <h3><?php echo substr($stop_names[$stopCode], 3); ?> </h3>
                 <div>
-                  <strong>Eastbound</strong><br/>
+                  
+                  <strong><?php switch(substr($stop_names[$stopCode], 0, 2)) {
+                        case "EB":
+                            echo "Eastbound";
+                            break;
+                        case "WB":
+                            echo "Westbound";
+                            break;
+                        case "NB":
+                            echo "Northbound";
+                            break;
+                        case "SB":
+                            echo "Southbound";
+                            break;
+                        default:
+                            echo "";
+                            break;
+                        } ?> </strong><br/>
+
                   <strong>Stop #<?php echo $stopCode; ?></strong>
                    <a href="#deleteConfirmationPopup" name="delete<?php echo $stopCode ?>" 
                       role="button" class="btn btn-primary btn-danger btn-small delete" data-toggle="modal">Delete</a><br/>

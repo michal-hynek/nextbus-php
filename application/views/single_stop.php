@@ -38,5 +38,6 @@
 
     <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap-dropdown.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap-modal.js"></script>
   </body>
 </html>

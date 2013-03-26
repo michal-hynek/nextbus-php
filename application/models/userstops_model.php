@@ -57,6 +57,16 @@ class Userstops_model extends CI_model {
 		}
 	}
 
+	/*
+	* Deletes a particular user's stop from the database
+	* param: int $userId, int $stopCode
+	*/
+	public function delete($userId, $stopCode) {
+
+		$this->db->delete($this->db->dbprefix('user_stops'), array('user_id' => $userId, 'stop_id' => $stopCode));
+
+	}
+
 
 	/*
 	* Returns an array of stop numbers belonging to a specific user ID
@@ -83,6 +93,32 @@ class Userstops_model extends CI_model {
 		}
 
 
+	}
+
+	/*
+	* Retrieves the name of the stop from the database
+	* param: array[int] $stopCodes 
+	* return: array[string] $stopNames
+	*/
+	public function getStopNames($stopCodes) {
+
+	//	$sql = "select * from " . $this->db->dbprefix("stops") . " where code in (?)";
+	//	$stopNamesQuery = $this->db->query($sql, implode(",", $stopCodes));
+	//	$codes = implode(",", $stopCodes);
+		
+		$stopNamesQuery = $this->db->from($this->db->dbprefix('stops'))->where_in('code', $stopCodes)->get();
+
+		if ($stopNamesQuery->num_rows() > 0)  {
+			$results = $stopNamesQuery->result_array();
+			foreach( $results as $row ) {
+				$stopNames[$row['code']] = $row['description'];
+			}
+
+			return $stopNames;
+		}
+		else {
+			throw new StopNotFoundException("Stop(s) not found.");
+		}
 	}
 
 	private function getConfig() {

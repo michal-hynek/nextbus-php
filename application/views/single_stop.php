@@ -12,14 +12,14 @@
     <?php include 'navbar_logged_in.php'; ?>
 
     <div class="container-fluid">
-      <a class="btn btn-primary pull-right refresh" href="<?php echo base_url(); ?>index.php/userstops">Update Now!</a>
+      <a class="btn btn-primary pull-right refresh" href="<?php echo base_url(); ?>index.php/userstops/show_stop/<?php echo $single_stop; ?>">Update Now!</a>
       <p class="pull-right"><strong>Last update at <?php echo date("g:ia");?></strong></p>
       <div class="row-fluid">
         <div class="span12">
           <div class="row-fluid">            
               <div class="span8 offset2 nextbus-pod">
                
-                <?php $stopId = $stops[0]; // should only be 1 element.
+                <?php $stopCode = $single_stop; 
                       include 'stop_table.php';?>
 
               </div><!--/span-->

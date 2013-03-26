@@ -15,25 +15,35 @@ class UserStops extends CI_Controller {
 
 	}
 
-
+	/**
+	* index Function loads the data for the main userstops.php view
+	*/
 	public function index() {
 
 		$data = array();
-		$data['user_id'] = 1;  // generic user ID.  Will grab from session information later
-		
+		$data['user_id'] = $this->session->userdata('user_id'); 
+
 		try {
+
 			$data['stops'] = $this->userstops_model->getUserStops($data['user_id']); 
+			$data['stop_names'] = $this->userstops_model->getStopNames($data['stops']);
+
 		}
 		catch (UserHasNoStopsException $e) {
 			$data['errorMessage'] = "You currently have no saved stops.";
+			$data['stops'] = NULL;
+		}
+		catch (StopNotFoundException $e) {
+			$data['errorMessage'] = "Stop(s) not found.";
+			return;
 		}
 
 		// add the data for each stop
 		for ( $i = 0; $i < count($data['stops']); $i++ ) {
 
-			$stopId = $data['stops'][$i];  // assigns the stop number as the$stopId/element
-			$data['stop_data'][$stopId] = $this->userstops_model->get_arrivals($stopId);
-			$data['stop_data'][$stopId]['number_of_buses'] = sizeof($data['stop_data'][$stopId]);
+			$stopCode = $data['stops'][$i];  // assigns the stop number as the$stopCode/element
+			$data['stop_data'][$stopCode] = $this->userstops_model->get_arrivals($stopCode);
+			$data['stop_data'][$stopCode]['number_of_buses'] = sizeof($data['stop_data'][$stopCode]);
 
 		}
 
@@ -41,12 +51,20 @@ class UserStops extends CI_Controller {
 
 	}
 
+	/**
+	* Function attempts to add the requested stop the user_stops table in DB
+	* param: int $userId, int $stopCode
+	*/
 	public function add($userId, $stopCode) {
+		
 		$data = array();
+		$data['user_id'] = $this->session->userdata('user_id');  
 
 		try {
+
 			$this->userstops_model->add($userId, $stopCode);
 			$data['infoMessage'] = "The stop with code '$stopCode' was added.";
+
 		}
 		catch (UserStopAlreadyExistsException $e) {
 			$data['errorMessage'] = "You already have bus stop with code '$stopCode'.";
@@ -55,23 +73,64 @@ class UserStops extends CI_Controller {
 			$data['errorMessage'] = "The stop with code '$stopCode' doesn't exist.";
 		}
 
+		// Now add general stops data for the views
+		try {
+
+			$data['stops'] = $this->userstops_model->getUserStops($data['user_id']); 
+			$data['stop_names'] = $this->userstops_model->getStopNames($data['stops']);
+
+		}
+		catch (UserHasNoStopsException $e) {
+			$data['errorMessage'] = "You currently have no saved stops.";
+		}
+		catch (StopNotFoundException $e) {
+			$data['errorMessage'] = "Stop(s) not found.";
+		}
+
 		$this->load->view('add_stop', $data);
 	}
 
 
 	/**
 	* Function redirects to the single stop view when a user clicks on a saved station in their menu
-	* param: int $stopId
+	* param: int $stopCode
 	*/
-	public function show_stop($stopId) {
+	public function show_stop($stopCode) {
 
 		$data = array();
-		$data['stops'][0] = $stopId;  // assigns the stop number as the$stopId/element.  There is only one in this case
-		$data['stop_data'][$stopId] = $this->userstops_model->get_arrivals($stopId);
-		$data['stop_data'][$stopId]['number_of_buses'] = sizeof($data['stop_data'][$stopId]);
+		$data['user_id'] = $this->session->userdata('user_id');
+
+		try {
+
+			$data['stops'] = $this->userstops_model->getUserStops($data['user_id']);
+			$data['stop_names'] = $this->userstops_model->getStopNames($data['stops']); 
+		}
+		catch (UserHasNoStopsException $e) {
+			$data['errorMessage'] = "You currently have no saved stops.";
+		}
+		catch (StopNotFoundException $e) {
+			$data['errorMessage'] = "Stop(s) not found.";
+		}
+
+		$data['single_stop'] = $stopCode; 
+		$data['stop_data'][$stopCode] = $this->userstops_model->get_arrivals($stopCode);
+		$data['stop_data'][$stopCode]['number_of_buses'] = sizeof($data['stop_data'][$stopCode]);
 
 		$this->load->view('single_stop', $data);
 
+	}
+
+	/**
+	* Function deletes the selected stop from 
+	* param: int $userId, int $stopCode
+	*/
+	public function delete_stop($stopCode) {
+
+		$data = array();
+		$data['user_id'] = $this->session->userdata('user_id');
+
+		$this->userstops_model->delete($data['user_id'], $stopCode);
+		$this->index();
 	}
 		
 }

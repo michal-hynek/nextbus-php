@@ -7,7 +7,7 @@ class Location_model extends CI_model {
 
 	public function findStopsNearLocation($searchInput, $radius) {
 		$stops = array();
-		$locations = $this->getByName($searchInput);
+		$locations = $this->getByName($searchInput, true);
 
 		foreach ($locations as $location) {
 			$longitude = $location->longitude;
@@ -15,7 +15,7 @@ class Location_model extends CI_model {
 
 			$sql = "SELECT *, SQRT(" .
     				"POW(69.1 * (latitude - ?), 2) + " .
-    				"POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2)) AS distance " .
+    				"POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2))*1.60934 AS distance " .
 					"FROM " . $this->db->dbprefix("stops") . " HAVING distance < ? ORDER BY distance";
 			$query = $this->db->query($sql, array($latitude, $longitude, $radius));
 
@@ -25,12 +25,18 @@ class Location_model extends CI_model {
 		return $stops;
 	}
 
-	public function getByName($name) {
+	public function getByName($name, $exactMatch) {
 		if (empty($name)) {
 			return array();
 		}
 
-		$query = $this->db->from($this->db->dbprefix('locations'))->like('name', $name)->get();
+		if ($exactMatch) {
+			$query = $this->db->from($this->db->dbprefix('locations'))->where('name', $name)->get();
+		}
+		else {
+			$query = $this->db->from($this->db->dbprefix('locations'))->like('name', $name)->get();
+		}
+
 		if ($query->num_rows() > 0) {
 			return $query->result();
 		}

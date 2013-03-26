@@ -46,13 +46,16 @@
         </div>
         <?php endif; ?>
 
-        <div class="span10 offset3 search-result">
+        <div class="span12 offset2 search-result">
 
           <?php if (isset($searchResult) && sizeof($searchResult) > 0): ?>
           <table class="table search-result-table">
             <th>Stop #</th>
             <th>Name</th>
             <th>Description</th>
+            <?php if(isset($searchResult[0]->distance)): ?>
+            <th>Distance</th>
+            <?php endif; ?>
             <th></th>
 
             <?php foreach ($searchResult as $stop): ?>
@@ -60,6 +63,9 @@
                 <td><?php echo $stop->code; ?></td>
                 <td><?php echo $stop->name; ?></td>
                 <td><?php echo $stop->description; ?></td>
+                <?php if(isset($stop->distance)): ?>
+                <td><?php echo round($stop->distance, 2) . " km"; ?></td>
+                <?php endif; ?>
                 <td class="rightCell">
                   <a class="btn btn-primary" 
                      href="<?php echo base_url();?>index.php/userstops/add/<?php echo $this->session->userdata('user_id');?>/<?php echo $stop->code; ?>">

@@ -17,7 +17,7 @@ class Stops extends Restricted {
                         $searchInput = $this->input->post('search_input');
                 }
 
-                $stops = $this->location_model->findStopsNearLocation($searchInput, 0.2);
+                $stops = $this->location_model->findStopsNearLocation($searchInput, 0.5);
                 $stops = array_merge($stops, $this->stop_model->find($searchInput));
 
                 $data = array();
@@ -36,7 +36,7 @@ class Stops extends Restricted {
                 $this->load->model('location_model');
 
                 $searchInput = $this->input->post('search_input');
-                $locations = $this->location_model->getByName($searchInput);
+                $locations = $this->location_model->getByName($searchInput, false);
                 $stops = $this->stop_model->find($searchInput);
 
                 $response = array();

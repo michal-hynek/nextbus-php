@@ -11,17 +11,21 @@
                   <th>Destination</th>
                   <th class="rightCell">Arrives in</th>
 
-                  <?php for ( $i = 0; $i < MAXIMUM_ROWS_TO_DISPLAY; $i++ ): ?>    
+                  <?php if($show_all == FALSE) {
+                    $rowsToDisplay = MAXIMUM_ROWS_TO_DISPLAY;
+                  } else {
+                    $rowsToDisplay = sizeof($stop_data[$stopCode]);
+                  } ?>
 
-                  <tr>
-                    <?php if(!empty($stop_data[$stopCode][$i])): ?>
-                      <td><?php echo $stop_data[$stopCode][$i]['bus_number']; ?></td>
-                      <td><?php echo $stop_data[$stopCode][$i]['destination']; ?></td>
-                      <td class="rightCell"><?php echo $stop_data[$stopCode][$i]['time']; ?> min</td>
-                    <?php endif ?>
-                  </tr> 
-
-                  <?php endfor ?>
+                    <?php for ( $i = 0; $i < $rowsToDisplay; $i++ ): ?>
+                      <tr>
+                        <?php if(!empty($stop_data[$stopCode][$i])): ?>
+                          <td><?php echo $stop_data[$stopCode][$i]['bus_number']; ?></td>
+                          <td><?php echo $stop_data[$stopCode][$i]['destination']; ?></td>
+                          <td class="rightCell"><?php echo $stop_data[$stopCode][$i]['time']; ?> min</td>
+                        <?php endif ?>
+                      </tr>
+                    <?php endfor ?>
 
                 </table>
 
@@ -33,11 +37,11 @@
                     <li><a href="#">&laquo;</a></li>
                    
                     <?php 
-                      $numberOfPages = floor($stop_data[$stopCode]['number_of_buses'] / 5);
+                      $numberOfPages = floor($stop_data[$stopCode]['number_of_buses'] / MAXIMUM_ROWS_TO_DISPLAY);
                       $pageNumber = 1;
                       while ($pageNumber <= $numberOfPages): ?>
                        
-                        <li><a href="#"><?php echo $pageNumber; ?></a></li>
+                        <li><a href="<?php echo base_url(); ?>index.php/userstops/pagination<?php echo $stopCode . "/" . $pageNumber; ?>"><?php echo $pageNumber; ?></a></li>
                     
                     <?php 
                       $pageNumber++;

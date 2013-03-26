@@ -44,9 +44,9 @@ class UserStops extends CI_Controller {
 			$stopCode = $data['stops'][$i];  // assigns the stop number as the$stopCode/element
 			$data['stop_data'][$stopCode] = $this->userstops_model->get_arrivals($stopCode);
 			$data['stop_data'][$stopCode]['number_of_buses'] = sizeof($data['stop_data'][$stopCode]);
-
 		}
 
+		$data['show_all'] = FALSE;
 		$this->load->view('userstops', $data);
 
 	}
@@ -87,6 +87,7 @@ class UserStops extends CI_Controller {
 			$data['errorMessage'] = "Stop(s) not found.";
 		}
 
+		$data['show_all'] = FALSE;
 		$this->load->view('add_stop', $data);
 	}
 
@@ -116,6 +117,8 @@ class UserStops extends CI_Controller {
 		$data['stop_data'][$stopCode] = $this->userstops_model->get_arrivals($stopCode);
 		$data['stop_data'][$stopCode]['number_of_buses'] = sizeof($data['stop_data'][$stopCode]);
 
+		$data['show_all'] = TRUE;
+
 		$this->load->view('single_stop', $data);
 
 	}
@@ -132,5 +135,5 @@ class UserStops extends CI_Controller {
 		$this->userstops_model->delete($data['user_id'], $stopCode);
 		$this->index();
 	}
-		
+
 }

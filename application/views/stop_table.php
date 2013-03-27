@@ -38,6 +38,11 @@
 
                     <?php for ( $i = 0; $i < $rowsToDisplay; $i++ ): ?>
                       <tr>
+                        <?php if ($i == 0 && empty($stop_data[$stopCode][$i])): ?>
+                        <td></td>
+                        <td><p class="text-error">ERROR: Couldn't retrieve information from Translink API</p></td>
+                        <td></td>
+                        <?php endif; ?>
                         <?php if(!empty($stop_data[$stopCode][$i])): ?>
                           <td><?php echo $stop_data[$stopCode][$i]['bus_number']; ?></td>
                           <td><?php echo $stop_data[$stopCode][$i]['destination']; ?></td>

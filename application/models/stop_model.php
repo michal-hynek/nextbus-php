@@ -43,7 +43,10 @@ class Stop_model extends CI_model {
 	}
 
 	public function getByDescription($description) {
-		$query = $this->db->from($this->db->dbprefix('stops'))->like('description', $description)->get();
+		$searchFilter = "%" . $description . "%";
+		// replace empty spaces with % for more userfriendly search results
+		$searchFilter = preg_replace('/\s+/', '%', $searchFilter);
+		$query = $this->db->query("select * from " . $this->db->dbprefix('stops') . " where description like ?", $searchFilter);
 
 		if ($query->num_rows() > 0) {
 			return $query->result();

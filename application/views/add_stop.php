@@ -107,9 +107,9 @@
               success: function(data) {
                 process(data);
               }
-          });
-        }
-      });
+            });
+          }
+        });
 
       // dispatch search when the user selects an item from autocomplete menu
       var onSelect = function(event) {

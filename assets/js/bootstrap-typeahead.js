@@ -109,7 +109,10 @@
     }
 
   , matcher: function (item) {
-      return ~item.toLowerCase().indexOf(this.query.toLowerCase())
+      var regex_str = this.query.replace(/ /g, ".*");
+      var regex = new RegExp(regex_str.toLowerCase()); 
+      var item_lower = item.toLowerCase();
+      return item_lower.match(regex);
     }
 
   , sorter: function (items) {

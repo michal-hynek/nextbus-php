@@ -63,4 +63,3 @@
                   </div>
                 </div>
                 
-                <small>* indicates scheduled departure time</small>

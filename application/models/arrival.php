@@ -33,7 +33,12 @@ class Arrival {
 	}
 
 	public final function setMinutesTillArrival($minutesTillArrival) {
-		$this->minutesTillArrival = $minutesTillArrival;
+		if ($minutesTillArrival < 0) {
+			$this->minutesTillArrival = 0;
+		}
+		else {
+			$this->minutesTillArrival = $minutesTillArrival;
+		}
 	}
 
 }

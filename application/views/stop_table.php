@@ -21,7 +21,7 @@
                         } ?> </strong><br/>
 
                   <strong>Stop #<?php echo $stopCode; ?></strong>
-                   <a href="#deleteConfirmationPopup" name="delete<?php echo $stopCode ?>" 
+                   <a href="#deleteConfirmationPopup<?php echo $stopCode; ?>" name="delete<?php echo $stopCode ?>" 
                       role="button" class="btn btn-primary btn-danger btn-small delete" data-toggle="modal">Delete</a><br/>
                 </div>
                 <br/>
@@ -54,7 +54,7 @@
                 </table>
 
                 <!-- Delete Confirmation Popup -->
-                <div id="deleteConfirmationPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div id="deleteConfirmationPopup<?php echo $stopCode; ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h3 id="myModalLabel">Delete Confirmation</h3>

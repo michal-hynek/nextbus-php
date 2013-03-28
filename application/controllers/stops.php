@@ -5,21 +5,10 @@ require_once(APPPATH . 'exceptions/StopNotFoundException.php');
 require_once(APPPATH . 'exceptions/UserHasNoStopsException.php');
 
 // switch back to Restricted when done
-class Stops extends CI_Controller {   
+class Stops extends Restricted {   
         
         public function index() {
-            $data = array();
-
-            try {
-                $this->load->model('userstops_model');
-                $data['stops'] = $this->userstops_model->getUserStops($this->session->userdata('user_id')); 
-                $data['stop_names'] = $this->userstops_model->getStopNames($data['stops']);
-            }
-            catch (UserHasNoStopsException $e) {
-                $data['stops'] = NULL;
-            }
-            catch (StopNotFoundException $e) {}
-
+            $data = $this->_loadStopsMenuInfo(); 
             $this->load->view('add_stop', $data);
         }
 
@@ -35,7 +24,7 @@ class Stops extends CI_Controller {
                 $stops = $this->location_model->findStopsNearLocation($searchInput, 0.5);
                 $stops = array_merge($stops, $this->stop_model->find($searchInput));
 
-                $data = array();
+                $data = $this->_loadStopsMenuInfo(); 
                 $data['searchResult'] = $stops;
 
                 if (sizeof($stops) == 0) {
@@ -63,5 +52,21 @@ class Stops extends CI_Controller {
                 }
 
                 echo json_encode($response);
+        }
+
+        private function _loadStopsMenuInfo() {
+            $data = array();
+
+            try {
+                $this->load->model('userstops_model');
+                $data['stops'] = $this->userstops_model->getUserStops($this->session->userdata('user_id')); 
+                $data['stop_names'] = $this->userstops_model->getStopNames($data['stops']);
+            }
+            catch (UserHasNoStopsException $e) {
+                $data['stops'] = NULL;
+            }
+            catch (StopNotFoundException $e) {}
+
+            return $data;
         }
 }

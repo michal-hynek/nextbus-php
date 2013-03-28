@@ -30,22 +30,10 @@
       </div><!--/row-->
       </form>
 
+      <div id="message-row" class="row">
+      </div>
+
       <div class="row">
-
-        <?php if(isset($errorMessage)): ?>
-        <div class="span8 offset4 alert alert-error" />
-          <?php echo $errorMessage; ?>
-          <a href="#" class="close" data-dismiss="alert">&times;</a>
-        </div>
-        <?php endif; ?>
-
-        <?php if(isset($infoMessage)): ?>
-        <div class="span8 offset4 alert alert-info" />
-          <?php echo $infoMessage; ?>
-          <a href="#" class="close" data-dismiss="alert">&times;</a>
-        </div>
-        <?php endif; ?>
-
         <div class="span12 offset2 search-result">
 
           <?php if (isset($searchResult) && sizeof($searchResult) > 0): ?>
@@ -67,9 +55,9 @@
                 <td><?php echo round($stop->distance, 2) . " km"; ?></td>
                 <?php endif; ?>
                 <td class="rightCell">
-                  <a class="btn btn-primary" 
-                     href="<?php echo base_url();?>index.php/userstops/add/<?php echo $this->session->userdata('user_id');?>/<?php echo $stop->code; ?>">
-                     Add
+                  <a id="<?php echo $stop->code; ?>" class="btn btn-primary add_stop_button"
+                    href="#">
+                    Add
                   </a>
                 </td>
               </tr>
@@ -116,6 +104,44 @@
         $('#search_form').submit();
       }
       $('#search_input').on('change', onSelect);
+
+      // add bus stop on 'add' button click
+      var showErrorMessage = function(message) {
+        $("#message-row").html(
+          '<div class="span8 offset4 alert alert-error">' +
+            '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
+             message +
+          '</div>');
+      }
+
+      var showInfoMessage = function(message) {
+        $("#message-row").html(
+          '<div class="span8 offset4 alert alert-info">' +
+            '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
+             message +
+          '</div>');
+      }
+      $('.add_stop_button').click(function() {
+        $.ajax ({
+            url:      '<?php echo base_url(); ?>index.php/userstops/add/<?php echo $this->session->userdata("user_id");?>/' + $(this).attr('id'),
+            type:     'POST',
+            dataType: 'json',
+            cache:    false, 
+            async:    false,
+            success: function(response) {
+              if (response.errorMessage != null) {
+                showErrorMessage(response.errorMessage);
+              }
+              else if (response.infoMessage != null) {
+                showInfoMessage(response.infoMessage);
+              }
+            }
+        });
+      });
+
+      <?php if (isset($errorMessage)): ?>
+      showErrorMessage("<?php echo $errorMessage; ?>");
+      <?php endif; ?>
     });
     </script>
   </body>

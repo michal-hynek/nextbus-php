@@ -59,17 +59,18 @@ class UserStops extends CI_Controller {
 		
 		$data = array();
 		$data['user_id'] = $this->session->userdata('user_id');  
+		$success = true;
 
 		try {
-
 			$this->userstops_model->add($userId, $stopCode);
 			$data['infoMessage'] = "The stop with code '$stopCode' was added.";
-
 		}
 		catch (UserStopAlreadyExistsException $e) {
+			$success = false;
 			$data['errorMessage'] = "You already have bus stop with code '$stopCode'.";
 		}
 		catch (StopNotFoundException $e) {
+			$success = false;
 			$data['errorMessage'] = "The stop with code '$stopCode' doesn't exist.";
 		}
 
@@ -81,14 +82,20 @@ class UserStops extends CI_Controller {
 
 		}
 		catch (UserHasNoStopsException $e) {
+			$success = false;
 			$data['errorMessage'] = "You currently have no saved stops.";
 		}
 		catch (StopNotFoundException $e) {
+			$success = false;
 			$data['errorMessage'] = "Stop(s) not found.";
 		}
 
 		$data['show_all'] = FALSE;
-		$this->load->view('add_stop', $data);
+
+		// add random data to prevent AJAX caching
+		$data['random']	= rand(1, 9999999999999999);
+
+		echo json_encode($data);
 	}
 
 

@@ -7,7 +7,7 @@ require_once(APPPATH . 'exceptions/UserHasNoStopsException.php');
 
 define('MAXIMUM_ROWS_TO_DISPLAY', 5);
 
-class UserStops extends CI_Controller {
+class UserStops extends Restricted {
 
 	public function __construct() {
 		parent::__construct();

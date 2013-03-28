@@ -21,7 +21,7 @@
     <div class="container-fluid">
       <a class="btn btn-primary pull-left add-stop" href="<?php echo base_url(); ?>index.php/stops">Add Bus Stop</a>
       <a class="btn btn-primary pull-right refresh" href="<?php echo base_url(); ?>index.php/userstops">Update Now!</a>
-      <p class="pull-right"><strong>Last update at <?php echo date("g:ia");?></strong></p>
+      <p class="pull-right"><strong>Last update at <?php date_default_timezone_set('America/Vancouver'); echo date("g:ia");?></strong></p>
 
       <?php if( !empty($stops) ): ?>
         <?php $newRow = TRUE; // tracks whether at start or end of div row.  TRUE == start

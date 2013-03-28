@@ -8,6 +8,7 @@ class User_model extends CI_model {
 	private static $dateFormat;
 
 	public function __construct() {
+		date_default_timezone_set('America/Vancouver');
 		parent::__construct();
 		self::$dateFormat = "Y-m-d H:m:s";
 	}	

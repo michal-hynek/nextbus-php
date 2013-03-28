@@ -12,7 +12,7 @@
     <?php include 'navbar_logged_in.php'; ?>
 
     <div class="container-fluid">
-      <a class="btn btn-primary pull-right refresh" href="<?php echo base_url(); ?>index.php/userstops/show_stop/<?php echo $single_stop; ?>">Update Now!</a>
+      <a class="btn btn-primary pull-right refresh" href="<?php date_default_timezone_set('America/Vancouver'); echo base_url(); ?>index.php/userstops/show_stop/<?php echo $single_stop; ?>">Update Now!</a>
       <p class="pull-right"><strong>Last update at <?php echo date("g:ia");?></strong></p>
       <div class="row-fluid">
         <div class="span12">
